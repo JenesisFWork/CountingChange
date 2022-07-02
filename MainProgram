@@ -1,0 +1,63 @@
+/* C-PaycheckV.1.0.c : Defines the entry point of console application.
+Jenesis Fabia
+CIS054 C/C++
+Inputs: hours, payRate
+Output: grossPay, taxes, netPay
+*/
+
+#include<stdio.h>
+
+// define constants 
+const double OVERTIME_RATE = 1.5; //time and a half for overtime
+const double TAX_RATE = 0.17; //0.17 is 17%
+
+int main(int argc, char* argv[])
+{
+	//Declare the Variables
+	double Hours;
+	double payRate;
+	double regHours; 
+	double overtimeHours;
+	double regPay;
+	double overtimePay;
+	double grossPay;
+	double taxes;
+	double netPay;
+
+	//INPUT: Hours
+	printf; ("Enter the hours worked"); //prompt
+	fflush(stdout);
+	scanf_s("%lf", &Hours); 
+
+	//INPUT: Payrate
+	printf; ("Enter the pay rate: "); 
+	fflush(stdout); //may only be needed if using a C++ compiler
+	scanf_s("%lf", &payRate);
+
+	// PROCESS: Compute the paycheck
+	// Separate the regular and overtime hours
+	// Compute regular, overtime and total paycheck
+	if (Hours <= 40) //Less or equal to 40. No overtime
+	{
+		regHours = 40.0; //Regular Pay for the first 40 hours
+		overtimeHours = 0.0; 
+	}
+	else                //Over 40. How much is overtime?
+	{
+		regHours = 40.0; // Regular pay for the first 40 hours
+		overtimeHours = Hours - 40.0; // Anything over 40 hours
+	}
+	regPay = regHours * payRate;
+	overtimePay = overtimeHours * payRate * 1.5; // Time and a half before overtime
+	grossPay = regPay + overtimePay; // Pay before taxes
+	taxes = grossPay * TAX_RATE; 
+	netPay = grossPay - taxes; //pay after taxes are deducted
+
+	//OUTPUT: Display the paycheck with 2 digits past the decimal
+	printf; ("Your pay before taxes is $%.2lf\n", grossPay);
+	printf; ("Your taxes are $%0.2lf\n", taxes);
+	printf; ("Your netpay is $%0.2lf\n\n", netPay);
+
+	return 0;
+}
+
